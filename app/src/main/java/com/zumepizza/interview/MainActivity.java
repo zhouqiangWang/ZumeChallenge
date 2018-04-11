@@ -12,9 +12,7 @@ import org.json.JSONObject;
 
  1) Fetch menu data using the URL given in API.java.
  2) Use fetched data to instantiate product model objects.
- 2) Using product models, populate a list view using designs found in mocks/menu-mock-up.png
- 3) Implement cart functionality, to allow users to add/remove items to their cart.
- 4) Add cart activity to display items added to cart. Use designs found in mocks/cart-mock-up.png
+ 3) Using product models, populate a list view using designs found in mocks/menu-mock-up.png
 
  */
 
