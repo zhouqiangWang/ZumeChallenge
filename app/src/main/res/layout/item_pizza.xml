@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--<data>-->
+
+        <!--<import type="androidx.lifecycle.LiveData" />-->
+
+        <!--<variable-->
+            <!--name="userSession"-->
+            <!--type="com.google.samples.apps.iosched.model.userdata.UserSession" />-->
+
+    <!--</data>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_pizza_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:paddingVertical="@dimen/spacing_normal"
+        tools:targetApi="o"
+        >
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Pizza Name"
+            android:textAppearance="@android:style/TextAppearance.Material.Title"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/pizza_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="OkeyDoke Artichoke"
+            />
+        <ImageView
+            android:id="@+id/pizza_cover"
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:contentDescription="pizza menu picture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="240dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:text="pizza description"
+            android:textAppearance="@android:style/TextAppearance.Material.Body1"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="Premium pork seasoned like a traditional Mexican chorizo."
+            />
+        <TextView
+            android:id="@+id/tag_spicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_tag_spicy"
+            android:fontFamily="monospace"
+            android:paddingEnd="3dp"
+            android:paddingStart="2dp"
+            android:text="SPICY"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="sans"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            />
+        <TextView
+            android:id="@+id/tag_vege"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/holo_green_light"
+            android:fontFamily="sans-serif"
+            android:paddingEnd="3dp"
+            android:paddingStart="2dp"
+            android:text="VEGETARIAN"
+            android:textColor="?attr/actionMenuTextColor"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tag_spicy"
+            app:layout_constraintTop_toTopOf="@+id/tag_spicy"
+            />
+        <TextView
+            android:id="@+id/tag_gl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/holo_orange_light"
+            android:fontFamily="monospace"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="GF"
+            android:textColor="?attr/actionMenuTextColor"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tag_vege"
+            app:layout_constraintTop_toTopOf="@+id/tag_spicy"
+            />
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="$19.95"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            />
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="64dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:text="ADD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
