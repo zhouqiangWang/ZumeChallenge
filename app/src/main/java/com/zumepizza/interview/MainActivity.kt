@@ -25,7 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         mRecyclerView = findViewById(R.id.recycle_view)
         mLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        mAdapter = PizzaListAdapter()
+        mRecyclerView.layoutManager = mLayoutManager
+
+        mAdapter = PizzaListAdapter(this)
+        mRecyclerView.adapter = mAdapter
 
         pizzaListVM = ViewModelProviders.of(this).get(PizzaListViewModel::class.java)
 
