@@ -22,6 +22,8 @@ import com.zumepizza.interview.ui.PizzaListViewModel
 import com.zumepizza.interview.ui.SimpleItemDecoration
 import com.zumepizza.interview.ui.SimpleOneItemAdapter
 import timber.log.Timber
+import kotlin.math.max
+import kotlin.math.min
 
 class DetailFragment : Fragment() {
 
@@ -65,6 +67,30 @@ class DetailFragment : Fragment() {
             resultIntent.putExtra("name", mPizza.name)
             activity!!.setResult(2, resultIntent)
             activity?.finish()
+        }
+
+        mBinding.btnBuy.setText("ADD " + mAmount + " TO ORDER")
+        // plus minus buttons
+        mBinding.btnMinus.setOnClickListener {
+            v ->
+            mAmount = max(0, mAmount-1)
+            mBinding.tvAmount.text = mAmount.toString()
+            mBinding.btnBuy.setText("ADD " + mAmount + " TO ORDER")
+        }
+        mBinding.btnPlus.setOnClickListener {
+            v ->
+            mAmount ++
+            mBinding.tvAmount.text = mAmount.toString()
+            mBinding.btnBuy.setText("ADD " + mAmount + " TO ORDER")
+        }
+        if (mPizza.classifications?.spicy != true) {
+            mBinding.tagSpicy.visibility = View.GONE
+        }
+        if (mPizza.classifications?.vegetarian != true) {
+            mBinding.tagVege.visibility = View.GONE
+        }
+        if (mPizza.classifications?.gluten_free != true) {
+            mBinding.tagGl.visibility = View.GONE
         }
 
         mBinding.executePendingBindings()
