@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NavUtils
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -66,6 +67,7 @@ class DetailFragment : Fragment() {
             resultIntent.putExtra("totalPrice", mPizza.price.toDouble() * mAmount)
             resultIntent.putExtra("name", mPizza.name)
             activity!!.setResult(2, resultIntent)
+//            NavUtils.navigateUpFromSameTask(requireActivity())
             activity?.finish()
         }
 
@@ -91,6 +93,10 @@ class DetailFragment : Fragment() {
         }
         if (mPizza.classifications?.gluten_free != true) {
             mBinding.tagGl.visibility = View.GONE
+        }
+        mBinding.up.setOnClickListener {
+//            NavUtils.navigateUpFromSameTask(requireActivity())
+            activity?.finish()
         }
 
         mBinding.executePendingBindings()
