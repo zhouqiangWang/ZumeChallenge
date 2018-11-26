@@ -38,7 +38,7 @@ class DetailFragment : Fragment() {
 
         val requestQ = Volley.newRequestQueue(context)
         val imageLoader = ImageLoader(requestQ, ImageLruCache())
-        val listener = ImageLoader.getImageListener(mBinding.imgDetail, R.mipmap.ic_launcher, R.mipmap.ic_launcher)
+        val listener = ImageLoader.getImageListener(mBinding.imgDetail, R.mipmap.zume_pizza_logo, R.mipmap.zume_pizza_logo)
         Timber.d("image url = " + mPizza.assets!!.product_details_page[0].url)
         imageLoader.get(mPizza.assets!!.product_details_page[0].url, listener)
 
@@ -49,6 +49,7 @@ class DetailFragment : Fragment() {
         mBinding.recycleToppings.adapter = adapter
         mBinding.recycleToppings.addItemDecoration(SimpleItemDecoration())
 
+        mBinding.scrollView.smoothScrollTo(0, 20)
 
         mBinding.executePendingBindings()
 

@@ -77,8 +77,8 @@ class PizzaViewHolder(
             Timber.d("url = " + pizza.assets!!.menu[0].url)
             val requestQ = Volley.newRequestQueue(context)
             val imageLoader = ImageLoader(requestQ, ImageLruCache())
-            binding.pizzaCover.setDefaultImageResId(R.mipmap.ic_launcher)
-            binding.pizzaCover.setErrorImageResId(R.mipmap.ic_launcher)
+            binding.pizzaCover.setDefaultImageResId(R.mipmap.zume_pizza_logo)
+            binding.pizzaCover.setErrorImageResId(R.mipmap.zume_pizza_logo)
             binding.pizzaCover.setImageUrl(pizza.assets!!.menu[0].url, imageLoader)
 
             binding.itemPizzaAll.setOnClickListener({
