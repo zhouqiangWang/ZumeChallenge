@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zumepizza.interview.data.API
+import com.zumepizza.interview.model.Cart
 import com.zumepizza.interview.model.Pizza
 
 /**
@@ -11,7 +12,11 @@ import com.zumepizza.interview.model.Pizza
  */
 
 class PizzaListViewModel: ViewModel() {
-    var liveData: MutableLiveData<Pizza> = MutableLiveData()
+    var liveCart: MutableLiveData<Cart> = MutableLiveData()
+    init {
+        val defaultCart = Cart(0,0.0, HashMap())
+        liveCart.value = defaultCart
+    }
     fun getPizzaList(context: Context): MutableLiveData<List<Pizza>> {
         return API.getMenu(context)
     }

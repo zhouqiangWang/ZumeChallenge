@@ -1,21 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.zumepizza.interview.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_view"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="cart"
+            type="com.zumepizza.interview.model.Cart"/>
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/schedule_page_padding_bottom"
-        android:paddingTop="@dimen/spacing_normal"
-        android:scrollbars="vertical"
-        tools:ignore="UnusedAttribute" />
+        tools:context="com.zumepizza.interview.MainActivity">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/schedule_page_padding_bottom"
+            android:paddingTop="@dimen/spacing_normal"
+            android:scrollbars="vertical"
+            tools:ignore="UnusedAttribute"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+        <FrameLayout
+            android:id="@+id/frame_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_anchor="@id/recycle_view"
+            app:layout_anchorGravity="bottom"
+            >
+
+            <Button
+                android:id="@+id/btn_cart"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/colorAccent"
+                android:text="VIEW CART"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:visibility="visible"
+                app:layout_anchor="@+id/recycle_view"
+                app:layout_anchorGravity="bottom|center"
+                />
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_tag_circle"
+                android:elevation="2dp"
+                android:text="@{String.valueOf(cart.totalNum)}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Tooltip"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_anchorGravity="right|center_vertical"
+                />
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

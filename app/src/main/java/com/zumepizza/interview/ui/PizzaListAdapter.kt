@@ -81,10 +81,16 @@ class PizzaViewHolder(
             binding.pizzaCover.setErrorImageResId(R.mipmap.zume_pizza_logo)
             binding.pizzaCover.setImageUrl(pizza.assets!!.menu[0].url, imageLoader)
 
-            binding.itemPizzaAll.setOnClickListener({
-                v -> pizzaActions.openPizzaDetial(pizza)
-                Toast.makeText(context, "pizza Item clicked", Toast.LENGTH_SHORT)
-            })
+            binding.itemPizzaAll.setOnClickListener { v ->
+                pizzaActions.openPizzaDetial(pizza)
+                Toast.makeText(context, "pizza Item clicked", Toast.LENGTH_SHORT).show()
+            }
+
+            binding.buttonAdd.setOnClickListener {
+                v ->
+                pizzaActions.addToChart(pizza)
+                Toast.makeText(context, "add cart button clicked", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.setLifecycleOwner(lifecycleOwner)
         binding.executePendingBindings()
