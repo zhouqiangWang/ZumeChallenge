@@ -1,5 +1,6 @@
 package com.zumepizza.interview.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.Volley
+import com.zumepizza.interview.MainActivity
 import com.zumepizza.interview.R
 import com.zumepizza.interview.data.ImageLruCache
 import com.zumepizza.interview.databinding.DetailFragmentBinding
 import com.zumepizza.interview.model.Pizza
+import com.zumepizza.interview.ui.PizzaListViewModel
 import com.zumepizza.interview.ui.SimpleItemDecoration
 import com.zumepizza.interview.ui.SimpleOneItemAdapter
 import timber.log.Timber
@@ -29,6 +32,7 @@ class DetailFragment : Fragment() {
     lateinit var mPizza:Pizza
     private lateinit var viewModel: DetailViewModel
     private lateinit var mBinding: DetailFragmentBinding
+    private var mAmount: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -50,6 +54,18 @@ class DetailFragment : Fragment() {
         mBinding.recycleToppings.addItemDecoration(SimpleItemDecoration())
 
         mBinding.scrollView.smoothScrollTo(0, 20)
+
+        // ADD TO ORDER feature
+        mBinding.btnBuy.setOnClickListener {
+            it ->
+            Timber.d("ADD TO ORDER")
+            val resultIntent = Intent()
+            resultIntent.putExtra("amount", mAmount)
+            resultIntent.putExtra("totalPrice", mPizza.price.toDouble() * mAmount)
+            resultIntent.putExtra("name", mPizza.name)
+            activity!!.setResult(2, resultIntent)
+            activity?.finish()
+        }
 
         mBinding.executePendingBindings()
 

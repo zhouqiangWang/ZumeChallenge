@@ -83,13 +83,13 @@ class PizzaViewHolder(
 
             binding.itemPizzaAll.setOnClickListener { v ->
                 pizzaActions.openPizzaDetial(pizza)
-                Toast.makeText(context, "pizza Item clicked", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "pizza Item clicked", Toast.LENGTH_SHORT).show()
             }
 
             binding.buttonAdd.setOnClickListener {
                 v ->
                 pizzaActions.addToChart(pizza)
-                Toast.makeText(context, "add cart button clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "add \"" + pizza.name + "\" to cart", Toast.LENGTH_SHORT).show()
             }
         }
         binding.setLifecycleOwner(lifecycleOwner)

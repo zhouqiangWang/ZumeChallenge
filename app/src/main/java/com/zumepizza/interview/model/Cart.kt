@@ -9,9 +9,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Cart(
-    var totalNum: Int,
-    var amount: Double,
+    var amount: Int,
+    var totalPrice: Double,
     var details: MutableMap<String, Int>
 ) : Parcelable {
-    constructor(cart: Cart) : this(cart.totalNum, cart.amount, cart.details)
+    constructor(cart: Cart) : this(cart.amount, cart.totalPrice, cart.details)
 }

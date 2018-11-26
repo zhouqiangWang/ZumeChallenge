@@ -22,12 +22,12 @@ class MainActivity : AppCompatActivity(), PizzaActions {
         val intent = Intent()
         intent.setClass(this, Detail::class.java)
         intent.putExtra("pizza", pizza)
-        startActivity(intent)
+        startActivityForResult(intent, 1)
     }
 
     override fun addToChart(pizza: Pizza) {
         val oldCart = pizzaListVM.liveCart.value!!
-        val newCart: Cart = Cart(oldCart.totalNum+1, oldCart.amount + pizza.price.toDouble(), oldCart.details)
+        val newCart: Cart = Cart(oldCart.amount+1, oldCart.totalPrice + pizza.price.toDouble(), oldCart.details)
 
         if (newCart.details.containsKey(pizza.name)) {
             newCart.details[pizza.name] = newCart.details[pizza.name]!! + 1
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), PizzaActions {
             newCart.details[pizza.name] = 1
         }
 
-        Timber.d("totalNum = " + newCart)
+        Timber.d("amount = " + newCart)
         pizzaListVM.liveCart.value = newCart
     }
 
@@ -75,10 +75,34 @@ class MainActivity : AppCompatActivity(), PizzaActions {
         })
         pizzaListVM.liveCart.observe(this, Observer {
             cart ->
-            if (cart.totalNum > 0) {
+            if (cart.amount > 0) {
                 mainBinding.frameCart.visibility = View.VISIBLE
-                mainBinding.tvTotal.text = cart.totalNum.toString()
+                mainBinding.tvTotal.text = cart.amount.toString()
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if(resultCode == 2) {
+            Timber.d("resultCode = %d, amount = %d", resultCode, data!!.getIntExtra("amount", 0))
+            val oldCart = pizzaListVM.liveCart.value!!
+            val newCart: Cart = Cart(oldCart)
+            val addAmount = data.getIntExtra("amount", 0)
+            val addTotal = data.getDoubleExtra("totalPrice", 0.0)
+            val addName = data.getStringExtra("name")
+
+            newCart.amount += addAmount
+            newCart.totalPrice += addTotal
+
+            if (newCart.details.containsKey(addName)) {
+                newCart.details[addName] = newCart.details[addName]!! + 1
+            } else {
+                newCart.details[addName] = 1
+            }
+            pizzaListVM.liveCart.value = newCart
+        } else {
+            Timber.d("requestCode = %d, resultCode = %d", requestCode, resultCode)
+        }
     }
 }
